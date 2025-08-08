@@ -1,0 +1,25 @@
+{
+  "name": "openai-enterprise-chat",
+  "version": "1.1.0",
+  "private": true,
+  "homepage": "https://<your-gitlab-namespace>.gitlab.io/<your-project>",
+  "dependencies": {
+    "@azure/msal-browser": "^3.11.0",
+    "@azure/msal-react": "^2.1.0",
+    "@chakra-ui/icons": "^2.1.0",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "axios": "^1.7.2",
+    "framer-motion": "^11.2.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "lint": "echo \"(add eslint if desired)\""
+  }
+}

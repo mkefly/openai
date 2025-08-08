@@ -1,0 +1,55 @@
+global = {
+  location      = "westeurope"
+  environment   = "dev"
+  tags          = { app = "openai-platform", owner = "platform" }
+  allowed_cidrs = ["1.2.3.4/32"]
+}
+
+resource_group = { name = "rg-openai-dev" }
+
+openai = {
+  account_name = "aoai-dev-001"
+  sku          = "S0"
+  models = [
+    { deployment_name = "gpt-4o-mini", model_name = "gpt-4o-mini", model_version = "2024-07-18", tags = { purpose = "chat" } },
+    { deployment_name = "text-embedding-3-large", model_name = "text-embedding-3-large", model_version = "1", tags = { purpose = "embed" } }
+  ]
+  tags = { service = "openai" }
+}
+
+aad = {
+  tenant_id = "<tenant-guid>"
+  allowed_groups = [
+    { name = "openai-users", description = "Users allowed to access OpenAI chat" }
+  ]
+}
+
+key_vault = {
+  name = "kv-openai-dev"
+  tags = { service = "secrets" }
+}
+
+apim = {
+  name            = "apim-openai-dev"
+  publisher_name  = "Your Org"
+  publisher_email = "owner@example.com"
+  sku             = "Developer_1"
+  tags            = { service = "apim" }
+}
+
+identity = {
+  name = "mi-openai-apim"
+  tags = { service = "mi" }
+}
+
+cost_management = {
+  monthly_budget_usd  = 100
+  notification_emails = ["finops@example.com"]
+  tags                = { service = "cost" }
+}
+
+log_analytics = {
+  name           = "la-openai-dev"
+  retention_days = 30
+  tags           = { service = "logs" }
+}

@@ -1,0 +1,31 @@
+stages: [build, deploy]
+
+variables:
+  NODE_ENV: production
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - frontend/node_modules/
+
+build:
+  stage: build
+  image: node:20
+  script:
+    - cd frontend
+    - npm ci
+    - npm run build
+    - cp build/index.html build/404.html
+  artifacts:
+    paths:
+      - frontend/build
+
+pages:
+  stage: deploy
+  script:
+    - mkdir -p public
+    - mv frontend/build/* public/
+  artifacts:
+    paths: [public]
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
